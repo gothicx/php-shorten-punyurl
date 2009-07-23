@@ -25,7 +25,8 @@
 */
 
 class PunyURL {
-	function get_data($url="") {
+	// Get XML data.
+	function getData($url="") {
 		$csess=curl_init();
 		curl_setopt($csess,CURLOPT_URL,$url);
 		curl_setopt($csess,CURLOPT_RETURNTRANSFER,1);
@@ -43,7 +44,7 @@ class PunyURL {
 		$surl="http://services.sapo.pt/PunyURL/GetCompressedURLByURL?url=".urlencode($url);
 
 		// Get the information from XML response.
-		$xml=simplexml_load_string($this->get_data($surl));
+		$xml=simplexml_load_string($this->getData($surl));
 		$shorten['puny']=$xml->puny;
 		$shorten['ascii']=$xml->ascii;
 		$shorten['preview']=$xml->preview;
@@ -54,10 +55,10 @@ class PunyURL {
 	// Given a short URL that you got previously from short() function, return the Original URL.
 	function long($url="") {
 		// The URL for PunyURL service at SAPO.
-		$lurl="http://services.sapo.pt/PunyURL/GetURLByCompressedURL?url=".urlencode($url);
+		$surl="http://services.sapo.pt/PunyURL/GetURLByCompressedURL?url=".urlencode($url);
 
 		// Get the information from XML response.
-		$xml=simplexml_load_string($this->get_data($lurl));
+		$xml=simplexml_load_string($this->getData($surl));
 		$original['url']=$xml->url;
 
 		return $original;
