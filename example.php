@@ -12,10 +12,8 @@
 
 require_once("punyurl.class.php");
 
-$puny=new PunyURL;
-
-$shorten=$puny->short("http://marco.tondela.org");
-$original=$puny->long("http://瀟.sl.pt");
+$shorten=PunyURL::short("http://marco.tondela.org");
+$original=PunyURL::long("http://瀟.sl.pt");
 
 echo 'Puny URL: '.$shorten['puny']."<br>";
 echo 'ASCii URL: '.$shorten['ascii']."<br>";
