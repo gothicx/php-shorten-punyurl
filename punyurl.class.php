@@ -3,10 +3,11 @@
 /*
 	PunyURL is a URL shortening service provided by SAPO (http:/www.sapo.pt)
 	Homepage: http://services.sapo.pt/Metadata/Service/PunyURL?culture=EN
+
+	Version: 2.0
 	
-	Dependencies to run this class:
-	- PHP: version 5.x
-	- Package: php5-curl.
+	Dependencies:
+	- PHP version 5.x
 
 	Copyright (C) 2009 Marco Rodrigues <http://Marco.Tondela.org>
 	This program is free software; you can redistribute it and/or modify
@@ -25,17 +26,9 @@
 */
 
 class PunyURL {
-	// Get XML data.
-	private static function getData($url="") {
-		$csess=curl_init();
-		curl_setopt($csess,CURLOPT_URL,$url);
-		curl_setopt($csess,CURLOPT_RETURNTRANSFER,1);
-		// Timeout when connecting to the service (5 seconds).
-		curl_setopt($csess,CURLOPT_CONNECTTIMEOUT,5);
-		$data=curl_exec($csess);
-		curl_close($csess);
-
-		return $data;
+	// Set User-Agent
+	private function __contruct() {
+		$_SERVER['HTTP_USER_AGENT'] = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.12) Gecko/2009070810 Firefox/3.0.12";
 	}
 
 	// Convert long URL into two different types of shortened URL's.
@@ -44,7 +37,7 @@ class PunyURL {
 		$surl="http://services.sapo.pt/PunyURL/GetCompressedURLByURL?url=".urlencode($url);
 
 		// Get the information from XML response.
-		$xml=simplexml_load_string(PunyURL::getData($surl));
+		$xml=@simplexml_load_string(@file_get_contents($surl));
 		$shorten['puny']=$xml->puny;
 		$shorten['ascii']=$xml->ascii;
 		$shorten['preview']=$xml->preview;
@@ -58,7 +51,7 @@ class PunyURL {
 		$surl="http://services.sapo.pt/PunyURL/GetURLByCompressedURL?url=".urlencode($url);
 
 		// Get the information from XML response.
-		$xml=simplexml_load_string(PunyURL::getData($surl));
+		$xml=@simplexml_load_string(@file_get_contents($surl));
 		$original['url']=$xml->url;
 
 		return $original;
