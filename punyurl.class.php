@@ -28,7 +28,7 @@
 class PunyURL {
 	// Set User-Agent
 	private function __contruct() {
-		$_SERVER['HTTP_USER_AGENT'] = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.12) Gecko/2009070810 Firefox/3.0.12";
+		$_SERVER['HTTP_USER_AGENT'] = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.2) Gecko/20090805 Firefox/3.5.2";
 	}
 
 	// Convert long URL into two different types of shortened URL's.
