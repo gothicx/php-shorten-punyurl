@@ -12,7 +12,7 @@
 
 require_once("punyurl.class.php");
 
-$shorten=PunyURL::short("http://marco.tondela.org");
+$shorten=PunyURL::short("http://www.marblehole.com");
 $original=PunyURL::long("http://瀟.sl.pt");
 
 echo 'Puny URL: '.$shorten['puny']."<br>";

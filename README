@@ -1,0 +1,17 @@
+= PHP PunyURL Class =
+
+PunyURL is a URL shortening service provided by SAPO (http:/www.sapo.pt)
+Homepage: http://services.sapo.pt/Metadata/Service/PunyURL?culture=EN
+
+= Features =
+
+* Shortens and Expands URLs
+
+= Install =
+
+* Copy punyurl.class.php to your website directory.
+* Check example.php for examples.
+
+= Copyright =
+
+See LICENSE for details.
